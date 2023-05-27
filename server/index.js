@@ -42,6 +42,9 @@ app.post("/login", require("./routes/auth/endpoint_login"));
 app.post("/register", require("./routes/auth/endpoint_register"));
 app.get("/check", require("./routes/auth/endpoint_check_login"));
 
+// Show profile endpoints
+app.get("/showprofile", require("./routes/profile/show_profile"))
+
 // Listen
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

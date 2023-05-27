@@ -114,7 +114,17 @@ function Register() {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
-        <Button type={"submit"} style={{opacity:"1",borderRadius:"30px",background: "#FFFFFF",opacity:"0.4",color:"#695858"}}>Signup</Button>
+        <Button
+          type={"submit"}
+          style={{
+            borderRadius: "30px",
+            background: "#FFFFFF",
+            opacity: "0.4",
+            color: "#695858",
+          }}
+        >
+          Signup
+        </Button>
         <p style={textError}>{error}</p>
       </form>
       <Box sx={toRegisterBox}>

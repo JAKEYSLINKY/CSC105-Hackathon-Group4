@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 
 // Update user profile
-router.patch("/updateprofile", (req, res) => {
+router.patch("/updateprofile", async (req, res) => {
   const token = req.cookies.user;
   const jwtSecret = "ZJGX1QL7ri6BGJWj3t";
 
@@ -29,10 +29,17 @@ router.patch("/updateprofile", (req, res) => {
     });
   }
 
-  const { email, name } = req.body;
+  const email = req.body.email;
+  const name = req.body.name;
+  const password = req.body.password;
 
-  const sqlUpdate = "UPDATE users SET email = ?, name = ? WHERE id = ?";
-  connection.query(sqlUpdate, [email, name, userId], (err, results) => {
+  const salt1 = await bcrypt.genSalt(10);
+  console.log("Salt #1: ", salt1);
+  const hash1 = await bcrypt.hash(password, salt1);
+  console.log("Hash #1: ", hash1);
+  
+  const sqlUpdate = "UPDATE users SET email = ?, name = ?, hashed_password = ? WHERE id = ?";
+  connection.query(sqlUpdate, [email, name, hash1, userId], (err, results) => {
     if (err) {
       return res.status(500).json({
         success: false,

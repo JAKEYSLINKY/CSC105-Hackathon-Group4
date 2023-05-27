@@ -6,11 +6,11 @@ const cors = require("cors");
 
 // Connection
 const connection = mysql.createConnection({
-  host: "",
-  port: "",
-  user: "",
-  password: "",
-  database: "",
+  host: "db.cshack.site",
+  port: "3306",
+  user: "group04",
+  password: "209219225",
+  database: "group04",
 });
 
 // Check database
@@ -36,6 +36,11 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send("Hello World!!!");
 });
+
+// Register/Login endpoints
+app.post("/login", require("./routes/auth/endpoint_login"));
+app.post("/register", require("./routes/auth/endpoint_register"));
+app.get("/check", require("./routes/auth/endpoint_check_login"));
 
 // Listen
 app.listen(port, () => {

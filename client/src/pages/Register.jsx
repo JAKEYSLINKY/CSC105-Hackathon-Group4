@@ -117,11 +117,7 @@ function Register() {
         <Button
           type={"submit"}
           style={{
-<<<<<<< Updated upstream
             borderRadius: "30px",
-=======
-            orderRadius: "30px",
->>>>>>> Stashed changes
             background: "#FFFFFF",
             opacity: "0.4",
             color: "#695858",

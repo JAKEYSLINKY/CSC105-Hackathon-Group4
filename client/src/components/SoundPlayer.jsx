@@ -49,7 +49,6 @@ function SoundPlayer() {
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    
   };
 
   const sliderStyle = {
@@ -57,7 +56,7 @@ function SoundPlayer() {
     marginBottom: "10px",
     alignItems: "center",
     marginTop: "10px",
-    marginRight: "5%"
+    marginRight: "5%",
   };
 
   const buttonStyle = {
@@ -68,12 +67,13 @@ function SoundPlayer() {
   };
 
   const playerBox = {
-    bgcolor: "rgba(255, 255, 255, 0.5)",
-    width: "100%",
+    bgcolor: { xs: "rgba(255, 255, 255, 0)", sm: "rgba(255, 255, 255, 0.5)" },
+    width: { xs: "85%", sm: "100%" },
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     borderRadius: "10px",
+    marginRight: { xs: "15%", sm: "0%" },
   };
 
   const headerStyle = {
@@ -92,11 +92,7 @@ function SoundPlayer() {
       <Box sx={sliderBoxStyle}>
         <audio id="audio-rain" src={rainSound} autoPlay loop />
         <IconButton sx={iconStyle} onClick={toggleRainPlaying}>
-          {isRainPlaying ? (
-            <VolumeUpIcon />
-          ) : (
-            <VolumeOffIcon />
-          )}
+          {isRainPlaying ? <VolumeUpIcon /> : <VolumeOffIcon />}
         </IconButton>
         <Slider
           value={volumeRain}
@@ -111,11 +107,7 @@ function SoundPlayer() {
       <Box sx={sliderBoxStyle}>
         <audio id="audio-wave" src={waveSound} autoPlay loop />
         <IconButton sx={iconStyle} onClick={toggleWavePlaying}>
-          {isWavePlaying ? (
-            <VolumeUpIcon />
-          ) : (
-            <VolumeOffIcon />
-          )}
+          {isWavePlaying ? <VolumeUpIcon /> : <VolumeOffIcon />}
         </IconButton>
         <Slider
           value={volumeWave}
@@ -128,10 +120,18 @@ function SoundPlayer() {
         />
       </Box>
       <h1 style={headerStyle}>Category</h1>
-      <Button variant="contained" sx={buttonStyle}  onClick={() => setIsBlue("blue")}>
+      <Button
+        variant="contained"
+        sx={buttonStyle}
+        onClick={() => setIsBlue("blue")}
+      >
         Blue
       </Button>
-      <Button variant="contained" sx={buttonStyle} onClick={() => setIsBlue("not blue")}>
+      <Button
+        variant="contained"
+        sx={buttonStyle}
+        onClick={() => setIsBlue("not blue")}
+      >
         Not Blue
       </Button>
       <br />

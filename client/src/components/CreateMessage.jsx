@@ -5,18 +5,18 @@ import Axios from "../AxiosInstance";
 function CreateMessage() {
   const [message, setMessage] = useState();
   const playerBox = {
-    bgcolor: "rgba(255,255,255,0.5);",
-    width: "100%",
+    bgcolor: { xs: "rgba(255, 255, 255, 0)", sm: "rgba(255, 255, 255, 0.5)" },
+    width: { xs: "85%", sm: "100%" },
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     borderRadius: "10px",
-    marginTop: "30px",
+    marginTop: {xs: "20%", sm: "30px"},
   };
 
   const handleSubmit = async () => {
     try {
-      await Axios.post("/sendmsg", {text: message});
+      await Axios.post("/sendmsg", { text: message });
       setMessage("");
     } catch (error) {
       console.log(error);

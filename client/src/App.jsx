@@ -26,6 +26,7 @@ function App() {
   };
 
   const fetchData = async () => {
+    setIsLoading(true);
     Axios.get("/check")
       .then((res) => {
         setIsLogin(res.data.success);
@@ -38,17 +39,23 @@ function App() {
 
   if (isLoading) {
     return (
-      <>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
         <Loading />
-      </>
+      </Box>
     );
   }
+
   return (
-    <div style={{ position: "fixed", top: "0", left: "0" }}>
+    <div style={{ overflowY: "auto", height: "100vh" }}>
       {isLogin ? (
         <>
           <NavBar />
-          <Box display={"flex"} justifyContent={"center"}>
+          <Box display="flex" justifyContent="center">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Profile" element={<Profile />} />
@@ -61,11 +68,11 @@ function App() {
       ) : (
         <>
           <NavBar />
-          <Box display={"flex"} justifyContent={"center"}>
+          <Box display="flex" justifyContent="center">
             <Routes>
               <Route path="/Login" element={<Login onLogin={handleLogin} />} />
               <Route path="/Register" element={<Register />} />
-              <Route path="/*" element={<Navigate to={"/Login"} replace />} />
+              <Route path="/*" element={<Navigate to="/Login" replace />} />
             </Routes>
           </Box>
         </>

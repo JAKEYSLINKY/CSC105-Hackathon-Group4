@@ -6,11 +6,12 @@ import Axios from "../AxiosInstance";
 function ShowMessage() {
   const playerBox = {
     bgcolor: "rgba(255,255,255,0.5)",
-    width: "100%",
+    width: {xs: "85%", sm: "100%"},
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     borderRadius: "10px",
+    
   };
 
   const headerStyle = {

@@ -1,11 +1,12 @@
 import { Box, TextField } from "@mui/material";
 import React, { useState } from "react";
+import Axios from "../AxiosInstance";
 
 function CreateMessage() {
   const [message, setMessage] = useState();
   const playerBox = {
     bgcolor: "rgba(255,255,255,0.5);",
-    width: "80%",
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -31,6 +32,7 @@ function CreateMessage() {
 
   const headerStyle = {
     padding: "5px",
+    paddingTop: "0",
   };
   return (
     <Box sx={playerBox}>

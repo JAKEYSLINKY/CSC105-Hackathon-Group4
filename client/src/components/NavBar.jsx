@@ -32,7 +32,7 @@ function NavBar() {
       </NavLink>
       {navLink.map(({ name, to }) => (
         <NavLink
-          style={{ marginRight: "10%" }}
+          style={{ marginLeft: "4%", marginRight: "2%"}}
           key={name}
           to={to}
           onClick={() => setActiveLink(to)}
@@ -40,6 +40,7 @@ function NavBar() {
           <h1>{name}</h1>
         </NavLink>
       ))}
+      <div></div>
     </Box>
   );
 }

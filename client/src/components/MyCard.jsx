@@ -1,7 +1,8 @@
-import { Box } from "@mui/material";
-import React from "react";
+import React from 'react'
+import { Box, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-function MessageCard({ message }) {
+function MyCard({ message }) {
   const cardBox = {
     bgcolor: "#ffffff",
     borderRadius: "5px",
@@ -18,6 +19,7 @@ function MessageCard({ message }) {
   const textCardBox = {
     color: "black",
     wordWrap: "break-word",
+    width: "90%"
   };
 
   const iconStyle = {
@@ -28,8 +30,11 @@ function MessageCard({ message }) {
   return (
     <Box sx={cardBox}>
       <p style={textCardBox}>{message}</p>
+      <IconButton sx={iconStyle} aria-label="delete">
+        <DeleteIcon />
+      </IconButton>
     </Box>
   );
 }
 
-export default MessageCard;
+export default MyCard

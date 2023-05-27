@@ -58,6 +58,7 @@ h2 {
 
 p {
   color: #f4f4f4;
+  font-family: "Arial";
 }
 button:focus,
 button:focus-visible {

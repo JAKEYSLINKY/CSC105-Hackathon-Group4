@@ -58,7 +58,7 @@ function SongPlayer() {
 
   const playerBox = {
     bgcolor: "rgba(255,255,255,0.5);",
-    width: "60%",
+    width: "85%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

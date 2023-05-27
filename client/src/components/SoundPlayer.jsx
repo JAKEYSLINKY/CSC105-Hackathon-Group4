@@ -11,6 +11,7 @@ function SoundPlayer() {
   const [volumeWave, setVolumeWave] = useState(45);
   const [isRainPlaying, setIsRainPlaying] = useState(false);
   const [isWavePlaying, setIsWavePlaying] = useState(false);
+  const [blue, setIsBlue] = useState("blue");
 
   const handleVolumeRainChange = (_, value) => {
     setVolumeRain(value);
@@ -68,7 +69,7 @@ function SoundPlayer() {
 
   const playerBox = {
     bgcolor: "rgba(255, 255, 255, 0.5)",
-    width: "80%",
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -77,6 +78,7 @@ function SoundPlayer() {
 
   const headerStyle = {
     padding: "5px",
+    paddingTop: "0",
   };
 
   const iconStyle = {
@@ -126,10 +128,10 @@ function SoundPlayer() {
         />
       </Box>
       <h1 style={headerStyle}>Category</h1>
-      <Button variant="contained" sx={buttonStyle}>
+      <Button variant="contained" sx={buttonStyle}  onClick={() => setIsBlue("blue")}>
         Blue
       </Button>
-      <Button variant="contained" sx={buttonStyle}>
+      <Button variant="contained" sx={buttonStyle} onClick={() => setIsBlue("not blue")}>
         Not Blue
       </Button>
       <br />

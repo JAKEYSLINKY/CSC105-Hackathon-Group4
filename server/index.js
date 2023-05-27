@@ -46,6 +46,9 @@ app.get("/check", require("./routes/auth/endpoint_check_login"));
 app.get("/showprofile", require("./routes/profile/show_profile"))
 app.patch("/updateprofile", require("./routes/profile/endpoint_update_profile"))
 
+// Song endpoints
+app.get("/showsong", require("./routes/song/show_song"))
+
 // Listen
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

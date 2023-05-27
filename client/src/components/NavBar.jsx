@@ -16,12 +16,20 @@ function NavBar() {
   const navBar = {
     display: "flex",
     flexDirection: "row",
-    width: "100vw",
-    paddingLeft: "2rem"
+    width: "98vw",
+    paddingLeft: "2%",
   };
 
   return (
     <Box sx={navBar}>
+      <NavLink
+        key={"icon"}
+        to={"/"}
+        onClick={() => setActiveLink("/")}
+        style={{ marginRight: "auto" }}
+      >
+        <img src={logo} style={{ width: "120px", marginTop: "10%" }} />
+      </NavLink>
       {navLink.map(({ name, to }) => (
         <NavLink
           style={{ marginRight: "20px" }}

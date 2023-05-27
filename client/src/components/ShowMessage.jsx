@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
+import MessageCard from "./MessageCard";
 
 function ShowMessage() {
   const playerBox = {
@@ -18,6 +19,7 @@ function ShowMessage() {
   return (
     <Box sx={playerBox}>
       <h1 style={headerStyle}>Note from Bottle</h1>
+      <MessageCard message="Hello"/>
     </Box>
   );
 }

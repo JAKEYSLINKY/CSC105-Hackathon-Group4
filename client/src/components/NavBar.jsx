@@ -9,8 +9,8 @@ function NavBar() {
 
   const navLink = [
     { name: "Home", to: "/" },
-    { name: "Message", to: "/Message" },
-    { name: "About", to: "/About" },
+    { name: "About Whal", to: "/About" },
+    { name: "Profile", to: "/Profile" },
   ];
 
   const navBar = {

@@ -3,6 +3,7 @@ import React from "react";
 import SongPlayer from "../components/SongPlayer";
 import SoundPlayer from "../components/SoundPlayer";
 import ShowMessage from "../components/ShowMessage";
+import CreateMessage from "../components/CreateMessage";
 
 
 function Home() {
@@ -23,6 +24,7 @@ function Home() {
       <Grid item xs={12} sm={4} pr={"10%"}>
         <SoundPlayer />
         <ShowMessage />
+        <CreateMessage />
       </Grid>
     </Grid>
   );

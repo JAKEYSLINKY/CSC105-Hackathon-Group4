@@ -3,13 +3,13 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import "./App.css";
 import Login from "./pages/Login";
-import Message from "./pages/Message";
 import About from "./pages/About";
 import NavBar from "./components/NavBar";
 import Register from "./pages/Register";
 import Axios from "./AxiosInstance";
 import { Box } from "@mui/material";
 import Loading from "./components/Loading";
+import Profile from "./pages/Profile";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -51,7 +51,7 @@ function App() {
           <Box display={"flex"} justifyContent={"center"}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/Message" element={<Message />} />
+              <Route path="/Profile" element={<Profile />} />
               <Route path="/About" element={<About />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />

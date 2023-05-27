@@ -20,6 +20,7 @@ router.get("/showsong", (req, res) => {
         error: err.message,
       });
     }
+    
 
     // Shuffle the songs using Fisher-Yates algorithm
     shuffleArray(results);

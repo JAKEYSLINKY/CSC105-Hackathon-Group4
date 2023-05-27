@@ -49,6 +49,13 @@ app.patch("/updateprofile", require("./routes/profile/endpoint_update_profile"))
 // Song endpoints
 app.get("/showsong", require("./routes/song/show_song"))
 
+// Message endpoints
+app.get("/showmsg", require("./routes/messages/show_msg"))
+app.post("/sendmsg", require("./routes/messages/send_msg"))
+app.patch("/updatemsg", require("./routes/messages/update_msg"))
+app.delete("/deletemsg", require("./routes/messages/remove_msg"))
+app.get("/randommsgs", require("./routes/messages/randommsg"))
+
 // Listen
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

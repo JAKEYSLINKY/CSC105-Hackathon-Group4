@@ -9,14 +9,16 @@ import NavBar from "./components/NavBar";
 import Register from "./pages/Register";
 import Axios from "./AxiosInstance";
 import { Box } from "@mui/material";
+import Loading from "./components/Loading";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
+
   }, []);
 
   const handleLogin = () => {
@@ -35,6 +37,9 @@ function App() {
       });
   };
 
+  if (isLoading) {
+      return <><Loading /></>
+  }
   return (
     <div style={{ position: "fixed", top: "0", left: "0" }}>
       {isLogin ? (

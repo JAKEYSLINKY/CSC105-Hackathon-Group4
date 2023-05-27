@@ -1,14 +1,27 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
-
+import Lottie from "react-lottie";
+import animationData from '../assets/whale.json'
 function About() {
-    const aboutStyle = {
-        paddingRight: "6rem"
+  const aboutStyle = {
+    paddingRight: "6rem",
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
     }
+  };
+
   return (
     <Grid container>
-      <Grid item xs={12} sm={6}></Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={5}>
+        <Lottie options={defaultOptions} height={500} width={500} />
+      </Grid>
+      <Grid item xs={12} sm={7}>
         <Box sx={aboutStyle}>
           <h2>WHAL</h2>
           <p>

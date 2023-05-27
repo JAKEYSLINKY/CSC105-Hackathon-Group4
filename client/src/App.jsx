@@ -18,7 +18,6 @@ function App() {
 
   useEffect(() => {
     fetchData();
-
   }, []);
 
   const handleLogin = () => {
@@ -38,7 +37,11 @@ function App() {
   };
 
   if (isLoading) {
-      return <><Loading /></>
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
   return (
     <div style={{ position: "fixed", top: "0", left: "0" }}>
@@ -56,11 +59,16 @@ function App() {
           </Box>
         </>
       ) : (
-        <Routes>
-          <Route path="/Login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/*" element={<Navigate to={"/Login"} replace />} />
-        </Routes>
+        <>
+          <NavBar />
+          <Box display={"flex"} justifyContent={"center"}>
+            <Routes>
+              <Route path="/Login" element={<Login onLogin={handleLogin} />} />
+              <Route path="/Register" element={<Register />} />
+              <Route path="/*" element={<Navigate to={"/Login"} replace />} />
+            </Routes>
+          </Box>
+        </>
       )}
     </div>
   );

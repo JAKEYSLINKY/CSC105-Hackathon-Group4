@@ -40,13 +40,13 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.1em;
   line-height: 1.1;
+  font-family: "Staatliches";
+  color: #f4f4f4;
 }
 
 h2 {

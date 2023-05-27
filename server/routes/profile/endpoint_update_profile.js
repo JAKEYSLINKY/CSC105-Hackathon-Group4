@@ -2,18 +2,21 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-router.get("/showprofile", (req, res) => {
+// Update user profile
+router.patch("/updateprofile", (req, res) => {
   const token = req.cookies.user;
   const jwtSecret = "ZJGX1QL7ri6BGJWj3t";
-  
+
   if (!token) {
-    res.json({
+    res.status(401).json({
       success: false,
       message: "Please login again",
     });
     return;
   }
+
   let userId;
+
   try {
     const decoded = jwt.verify(token, jwtSecret);
     userId = decoded.userId;
@@ -26,17 +29,19 @@ router.get("/showprofile", (req, res) => {
     });
   }
 
-  const sqlSelect = "SELECT email, name FROM users WHERE id = ?";
-  connection.query(sqlSelect, [userId], (err, results) => {
+  const { email, name } = req.body;
+
+  const sqlUpdate = "UPDATE users SET email = ?, name = ? WHERE id = ?";
+  connection.query(sqlUpdate, [email, name, userId], (err, results) => {
     if (err) {
-      return res.status(500).json({                              
+      return res.status(500).json({
         success: false,
         data: null,
         error: err.message,
       });
     }
 
-    if (results.length === 0) {
+    if (results.affectedRows === 0) {
       return res.status(404).json({
         success: false,
         data: null,
@@ -44,13 +49,11 @@ router.get("/showprofile", (req, res) => {
       });
     }
 
-    const user = results[0];
     return res.json({
       success: true,
-      data: user,
+      message: "Profile updated successfully.",
     });
   });
 });
-
 
 module.exports = router;

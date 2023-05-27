@@ -42,8 +42,9 @@ app.post("/login", require("./routes/auth/endpoint_login"));
 app.post("/register", require("./routes/auth/endpoint_register"));
 app.get("/check", require("./routes/auth/endpoint_check_login"));
 
-// Show profile endpoints
+// Profile endpoints
 app.get("/showprofile", require("./routes/profile/show_profile"))
+app.patch("/updateprofile", require("./routes/profile/endpoint_update_profile"))
 
 // Listen
 app.listen(port, () => {

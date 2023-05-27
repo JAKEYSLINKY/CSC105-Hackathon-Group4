@@ -1,5 +1,5 @@
 :root {
-  font-family: "Staatliches, Rasa";
+  font-family: "Staatliches, Rokkitt";
   line-height: 1.5;
   font-weight: 400;
 
@@ -16,9 +16,9 @@
 
 
 @font-face {
-  font-family: "Rasa";
-  src: local("Rasa"),
-   url("./fonts/Rasa/Rasa-VariableFont_wght.ttf");
+  font-family: "Rokkitt";
+  src: local("Rokkitt"),
+   url("./fonts/Rokkitt/Rokkitt-Italic-VariableFont_wght.ttf");
   font-weight: normal;
  }
 

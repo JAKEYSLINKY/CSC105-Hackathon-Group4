@@ -19,29 +19,25 @@ function About() {
   return (
     <Grid container>
       <Grid item xs={12} sm={5}>
-        <Lottie options={defaultOptions} height={500} width={500} />
+        {/* <Lottie options={defaultOptions} height={500} width={500} /> */}
       </Grid>
       <Grid item xs={12} sm={7}>
         <Box sx={aboutStyle}>
-          <h2>WHAL</h2>
-          <p>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum."
+          <div style={{lineHeight:"0.5"}}>
+          <h2 style={{fontSize:"40px"}}>LONELY, FEEL BLUE? </h2>
+          <h2 style={{fontSize:"24px",marginTop:"-30px"}}>WHAL 52Hz is here to be YOUR</h2>
+          <h2 style={{fontSize:"24px",marginTop:"-20px"}}>BEST FRIEND ALONG SIDE.</h2>
+          </div>
+
+          <p className="Rokkitt" style={{marginTop:"20px"}}>
+          The word "WHAL," which means whale in Thai, was inspired by tales of 52Hz, the world's loneliest whale. We intend for this website to serve as a haven on gloomy days.
+Enjoy sorrowful songs and blue times while you're here at your leisure, and don't forget to grab some encouraging words from the sea bottle till you feel better.
+Us, Whal developers recognize that we all live in the society that tending to be strong all the time is a must, But this is a kindly reminder that you’re safe to be blue here.
+Take Care and Take time.
           </p>
-          <h2>SUPPORT US</h2>
-          <p>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum."
+          <h2 >SUPPORT US</h2>
+          <p style={{marginTop:"-10px"}}>
+          Buy us a Coffee Click To Paypal
           </p>
         </Box>
       </Grid>

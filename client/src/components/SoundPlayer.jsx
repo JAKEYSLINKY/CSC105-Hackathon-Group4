@@ -6,12 +6,11 @@ import waveSound from "../audio/waves.mp3";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 
-function SoundPlayer() {
+function SoundPlayer({setIsBlue}) {
   const [volumeRain, setVolumeRain] = useState(45);
   const [volumeWave, setVolumeWave] = useState(45);
   const [isRainPlaying, setIsRainPlaying] = useState(false);
   const [isWavePlaying, setIsWavePlaying] = useState(false);
-  const [blue, setIsBlue] = useState("blue");
 
   const handleVolumeRainChange = (_, value) => {
     setVolumeRain(value);

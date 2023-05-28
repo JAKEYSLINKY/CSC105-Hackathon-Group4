@@ -7,7 +7,7 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import ReactPlayer from "react-player";
 
-function SongPlayer() {
+function SongPlayer({isBlue}) {
   const [isLoading, setIsLoading] = useState(true);
   const [playlist, setPlaylist] = useState([]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -28,7 +28,8 @@ function SongPlayer() {
 
   const fetchData = async () => {
     try {
-      const response = await Axios.get("/showsong");
+      console.log(isBlue)
+      const response = await Axios.get("/showsong", {groupby: isBlue});
       if (response.data.length === 0) {
         return;
       }

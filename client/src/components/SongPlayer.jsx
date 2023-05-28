@@ -7,7 +7,7 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import ReactPlayer from "react-player";
 
-function SongPlayer({isBlue}) {
+function SongPlayer({ isBlue }) {
   const [isLoading, setIsLoading] = useState(true);
   const [playlist, setPlaylist] = useState([]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -20,7 +20,7 @@ function SongPlayer({isBlue}) {
     if (savedPlaylist) {
       setPlaylist(JSON.parse(savedPlaylist));
     }
-  }, []);
+  }, [isBlue]);
 
   useEffect(() => {
     localStorage.setItem("playlist", JSON.stringify(playlist));
@@ -28,8 +28,8 @@ function SongPlayer({isBlue}) {
 
   const fetchData = async () => {
     try {
-      console.log(isBlue)
-      const response = await Axios.get("/showsong", {groupby: isBlue});
+      console.log(isBlue);
+      const response = await Axios.post("/showsong", { groupBy: isBlue });
       if (response.data.length === 0) {
         return;
       }
@@ -72,8 +72,8 @@ function SongPlayer({isBlue}) {
 
   const imgStyle = {
     maxWidth: "400px",
-    width: "80%"
-  }
+    width: "80%",
+  };
 
   if (isLoading || playlist.length === 0) {
     return (
@@ -94,7 +94,7 @@ function SongPlayer({isBlue}) {
         url={currentSong.song_url}
         playing={isPlaying}
         volume={volume}
-        style={{display: "none"}}
+        style={{ display: "none" }}
       />
       <h1>{currentSong?.name ?? "Name"}</h1>
       <Box>
@@ -109,7 +109,6 @@ function SongPlayer({isBlue}) {
         </IconButton>
       </Box>
       <h2>{currentSong?.artist ?? "Artist"}</h2>
-      
     </Box>
   );
 }

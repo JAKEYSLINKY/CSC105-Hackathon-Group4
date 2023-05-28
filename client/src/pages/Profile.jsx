@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, TextField, Button } from "@mui/material";
+import Axios from "../AxiosInstance";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
 
   const removeCookie = (name) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   };
 
-  // const MyComponent = () => {
   const handleRemoveCookie = () => {
     removeCookie("user");
     location.replace(location.href);
@@ -18,17 +24,51 @@ function Profile() {
     setName(event.target.value);
   };
 
-  const handleAgeChange = (event) => {
-    setAge(event.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
-  const handleSaveEdit = () => {
-    console.log("Name:", name);
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
   };
+
+  const validatePassword = () => {
+    if (password !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+    } else {
+      setPasswordError("");
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      validatePassword();
+
+      if (passwordError === "") {
+        await Axios.patch("/updateprofile", { name, email, password });
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+      // Handle the error, show an error message, or perform any necessary actions
+    }
+  };
+
+  useEffect(() => {
+    Axios.get("/showprofile")
+      .then((response) => {
+        setName(response.data.data.name);
+        setEmail(response.data.data.email);
+        setPassword(response.data.data.password);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   return (
     <div style={{ justifyContent: "center", alignItems: "center" }}>
@@ -50,13 +90,58 @@ function Profile() {
         />
       </Box>
 
+      <Box mt={2}>
+        <TextField
+          fullWidth
+          label="Email"
+          value={email}
+          onChange={handleEmailChange}
+          InputProps={{
+            inputProps: { style: { color: "white" } },
+            style: { color: "white" },
+          }}
+        />
+      </Box>
+
+      <Box mt={2}>
+        <TextField
+          fullWidth
+          label="Password"
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          InputProps={{
+            inputProps: { style: { color: "white" } },
+            style: { color: "white" },
+          }}
+        />
+      </Box>
+
+      <Box mt={2}>
+        <TextField
+          fullWidth
+          label="Confirm Password"
+          type="password"
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
+          InputProps={{
+            inputProps: { style: { color: "white" } },
+            style: { color: "white" },
+          }}
+        />
+        {passwordError && (
+          <p style={{ color: "red", margin: "0", fontSize: "12px" }}>
+            {passwordError}
+          </p>
+        )}
+      </Box>
+
       <Button
         variant="text"
         sx={{ color: "white" }}
         onClick={handleRemoveCookie}
       >
-        {" "}
-        sign out
+        Sign out
       </Button>
 
       <div
@@ -64,7 +149,7 @@ function Profile() {
       >
         <Button
           variant="contained"
-          onClick={handleSaveEdit}
+          onClick={handleSubmit}
           style={{
             borderRadius: "30px",
             background: "#FFFFFF",
@@ -78,4 +163,5 @@ function Profile() {
     </div>
   );
 }
+
 export default Profile;

@@ -2,6 +2,7 @@ import { Box, Grid } from "@mui/material";
 import React from "react";
 import Lottie from "react-lottie";
 import animationData from '../assets/whale.json'
+import animal from '../assets/animals_3.json'
 function About() {
   const aboutStyle = {
     paddingRight: "6rem",
@@ -10,7 +11,7 @@ function About() {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
+    animal : animal,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
     }

@@ -3,20 +3,16 @@ import { Box, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Axios from "../AxiosInstance";
 
-function MyCard({ message, id }) {
-
-  function resetAndUpdate() {
-    location.replace(location.href);
-  }
-
+function MyCard({ message, id, setCard }) {
   const handleDelete = async () => {
     try {
       console.log(id);
       await Axios.delete("/removemsg", { data: { msgId: id } });
-      resetAndUpdate();
+      setCard((data) => data.filter((note) => note.msg_id != id));
     } catch (error) {
       console.log(error);
     }
+    
   };
 
   const cardBox = {

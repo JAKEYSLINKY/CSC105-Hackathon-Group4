@@ -1,9 +1,10 @@
 import { Box, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "../AxiosInstance";
 
-function CreateMessage() {
-  const [message, setMessage] = useState();
+function CreateMessage({ setData }) {
+  const [message, setMessage] = useState("");
+
   const playerBox = {
     bgcolor: { xs: "rgba(255, 255, 255, 0)", sm: "rgba(255, 255, 255, 0.5)" },
     width: { xs: "85%", sm: "100%" },
@@ -11,19 +12,19 @@ function CreateMessage() {
     flexDirection: "column",
     alignItems: "center",
     borderRadius: "10px",
-    marginTop: {xs: "20%", sm: "30px"},
+    marginTop: { xs: "20%", sm: "30px" },
     marginBottom: { xs: "10%", sm: "0%" },
   };
 
   function resetAndUpdate() {
-    location.replace(location.href);
+    setMessage("");
   }
-  
+
   const handleSubmit = async () => {
     try {
       await Axios.post("/sendmsg", { text: message });
       setMessage("");
-      resetAndUpdate();
+      setData((prevData) => [...prevData, { text: message }]);
     } catch (error) {
       console.log(error);
     }
@@ -36,15 +37,26 @@ function CreateMessage() {
     }
   };
 
+  useEffect(() => {
+    Axios.get("/data")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const headerStyle = {
     padding: "5px",
     paddingTop: "0",
   };
+
   return (
     <Box sx={playerBox}>
       <h1 style={headerStyle}>Add Note</h1>
       <TextField
-        type={"email"}
+        type="email"
         value={message}
         fullWidth
         multiline

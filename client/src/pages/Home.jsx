@@ -1,13 +1,15 @@
 import { Box, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SongPlayer from "../components/SongPlayer";
 import SoundPlayer from "../components/SoundPlayer";
 import ShowMessage from "../components/ShowMessage";
 import CreateMessage from "../components/CreateMessage";
 import MyMessages from "../components/MyMessages";
+import Axios from "../AxiosInstance";
 
 function Home() {
   const [isBlue, setIsBlue] = useState();
+  const [message, setMessage] = useState([]);
   const boxColumn = {
     height: "100vh",
     display: "flex",
@@ -15,7 +17,24 @@ function Home() {
     alignItems: "center",
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await Axios.get("/showmsg", {
+        params: {
+          _cacheBuster: new Date().getTime(), // Append random query parameter to bypass cache
+        },
+      });
+      setMessage(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const isXs = window.innerWidth < 600;
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -45,10 +64,10 @@ function Home() {
           </Grid>
           <Grid item xs={24} sm={6} pr={"2%"} order={3}>
             <ShowMessage />
-            <CreateMessage />
+            <CreateMessage setData={setMessage} />
           </Grid>
           <Grid item xs={24} sm={5} pr={"2%"} order={4}>
-            <MyMessages />
+            <MyMessages message={message} setMessage={setMessage} />
           </Grid>
         </Grid>
       )}

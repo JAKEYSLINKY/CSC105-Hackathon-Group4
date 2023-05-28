@@ -10,6 +10,7 @@ import Axios from "./AxiosInstance";
 import { Box } from "@mui/material";
 import Loading from "./components/Loading";
 import Profile from "./pages/Profile";
+import Error from "./pages/Error";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -30,7 +31,7 @@ function App() {
     width: "calc(100vw - 17px - 2rem)",
     overflowX: "hidden",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
   };
 
   const fetchData = async () => {
@@ -41,7 +42,7 @@ function App() {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(error);
+        console.log(err);
       });
   };
 
@@ -62,7 +63,7 @@ function App() {
     <div>
       {isLogin ? (
         <>
-          <NavBar />
+          {window.location.pathname !== "/Error" && <NavBar />}
           <Box sx={boxStyle}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -70,6 +71,8 @@ function App() {
               <Route path="/About" element={<About />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/Register" element={<Register />} />
+              <Route path="/Error" element={<Error />} />
+              <Route path="/*" element={<Navigate to="/Error" replace />} />
             </Routes>
           </Box>
         </>

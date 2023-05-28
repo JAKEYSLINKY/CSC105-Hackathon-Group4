@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 import Axios from "../AxiosInstance";
 import MyCard from "./MyCard";
 
-function MyMessages() {
+function MyMessages({ message, setMessage }) {
   const playerBox = {
     bgcolor: "rgba(255,255,255,0.5)",
-    width: {xs: "85%", sm: "100%"},
+    width: { xs: "85%", sm: "100%" },
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "10px",
-    marginBottom: "40px"
+    marginBottom: "40px",
   };
 
   const headerStyle = {
@@ -37,26 +37,21 @@ function MyMessages() {
       borderRadius: "3px", // Rounded corners for the scrollbar thumb
     },
   };
-  
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    Axios.get("/showmsg")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  // getData(a) =>[{...a, }];
 
   return (
     <Box sx={playerBox}>
       <h1 style={headerStyle}>My notes</h1>
       <Box sx={listFrame}>
-        {data.length > 0 ? (
-          data.map((message) => (
-            <MyCard key={message.id} message={message.text} id={message.msg_id} />
+        {message.length > 0 ? (
+          message.map((message) => (
+            <MyCard
+              key={message.id}
+              message={message.text}
+              id={message.msg_id}
+              setCard={setMessage}
+            />
           ))
         ) : (
           <p>No messages found.</p>

@@ -25,6 +25,14 @@ function App() {
     navigate("/");
   };
 
+  const boxStyle = {
+    overflowY: "auto",
+    width: "calc(100vw - 17px - 2rem)",
+    overflowX: "hidden",
+    display: "flex",
+    justifyContent: "center"
+  };
+
   const fetchData = async () => {
     setIsLoading(true);
     Axios.get("/check")
@@ -51,11 +59,11 @@ function App() {
   }
 
   return (
-    <div style={{ overflowY: "auto", height: "100vh" }}>
+    <div>
       {isLogin ? (
         <>
           <NavBar />
-          <Box display="flex" justifyContent="center">
+          <Box sx={boxStyle}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Profile" element={<Profile />} />
@@ -68,7 +76,7 @@ function App() {
       ) : (
         <>
           <NavBar />
-          <Box display="flex" justifyContent="center">
+          <Box sx={boxStyle}>
             <Routes>
               <Route path="/Login" element={<Login onLogin={handleLogin} />} />
               <Route path="/Register" element={<Register />} />

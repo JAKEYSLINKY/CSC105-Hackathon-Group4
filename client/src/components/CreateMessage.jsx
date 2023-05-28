@@ -12,12 +12,18 @@ function CreateMessage() {
     alignItems: "center",
     borderRadius: "10px",
     marginTop: {xs: "20%", sm: "30px"},
+    marginBottom: { xs: "10%", sm: "0%" },
   };
 
+  function resetAndUpdate() {
+    location.replace(location.href);
+  }
+  
   const handleSubmit = async () => {
     try {
       await Axios.post("/sendmsg", { text: message });
       setMessage("");
+      resetAndUpdate();
     } catch (error) {
       console.log(error);
     }

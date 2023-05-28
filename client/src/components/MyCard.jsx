@@ -1,8 +1,24 @@
-import React from 'react';
+import React from "react";
 import { Box, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Axios from "../AxiosInstance";
 
-function MyCard({ message }) {
+function MyCard({ message, id }) {
+
+  function resetAndUpdate() {
+    location.replace(location.href);
+  }
+
+  const handleDelete = async () => {
+    try {
+      console.log(id);
+      await Axios.delete("/removemsg", { data: { msgId: id } });
+      resetAndUpdate();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const cardBox = {
     bgcolor: "#ffffff",
     borderRadius: "5px",
@@ -20,19 +36,19 @@ function MyCard({ message }) {
   const textCardBox = {
     color: "black",
     wordWrap: "break-word",
-    width: "90%"
+    width: "90%",
   };
 
   const iconStyle = {
     width: "55px",
     height: "55px",
-    color: "#ff0000"
+    color: "#ff0000",
   };
 
   return (
     <Box sx={cardBox}>
       <p style={textCardBox}>{message}</p>
-      <IconButton sx={iconStyle} aria-label="delete">
+      <IconButton sx={iconStyle} aria-label="delete" onClick={handleDelete}>
         <DeleteIcon />
       </IconButton>
     </Box>

@@ -53,7 +53,7 @@ app.get("/showsong", require("./routes/song/show_song"))
 app.get("/showmsg", require("./routes/messages/show_msg"))
 app.post("/sendmsg", require("./routes/messages/send_msg"))
 app.patch("/updatemsg", require("./routes/messages/update_msg"))
-app.delete("/deletemsg", require("./routes/messages/remove_msg"))
+app.delete("/removemsg", require("./routes/messages/remove_msg"))
 app.get("/randommsgs", require("./routes/messages/randommsg"))
 
 // Listen

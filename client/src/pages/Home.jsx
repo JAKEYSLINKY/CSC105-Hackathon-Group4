@@ -19,13 +19,10 @@ function Home() {
   return (
     <>
       {isXs ? (
-        <Grid container columns={24} order={1}>
+        <Grid container columns={24} order={1} pl={"3.1rem"}>
           <Grid item xs={24} sm={5} pl={"2%"}>
             <SongPlayer />
             <SoundPlayer />
-          </Grid>
-          <Grid item xs={24} sm={8} order={2}>
-            <Box sx={boxColumn}></Box>
           </Grid>
           <Grid item xs={24} sm={6} pr={"2%"} order={3}>
             <ShowMessage />

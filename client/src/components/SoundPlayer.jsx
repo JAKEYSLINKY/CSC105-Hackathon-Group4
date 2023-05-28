@@ -74,6 +74,8 @@ function SoundPlayer() {
     alignItems: "center",
     borderRadius: "10px",
     marginRight: { xs: "15%", sm: "0%" },
+    marginBottom: { xs: "20%", sm: "0%" },
+    marginTop: { xs: "10%", sm: "0%" },
   };
 
   const headerStyle = {

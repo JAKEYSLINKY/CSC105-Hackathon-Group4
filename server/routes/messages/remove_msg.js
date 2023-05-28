@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 router.delete("/removemsg", (req, res) => {
+  console.log("removemsg")
+  
   const msgId = req.body.msgId;
+  console.log(msgId)
   const sqlDelete = "DELETE FROM message WHERE msg_id = ?";
-  Connection.query(sqlDelete, [msgId], (err, results) => {
+  connection.query(sqlDelete, [msgId], (err, results) => {
     if (err) {
       console.log(err);
       res.json({
@@ -13,7 +16,6 @@ router.delete("/removemsg", (req, res) => {
         error: err.message,
       });
     } else {
-      console.log(`Note ${noteId} deleted properly`);
       res.json({
         success: true,
         error: null,

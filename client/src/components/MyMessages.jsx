@@ -12,6 +12,7 @@ function MyMessages() {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: "10px",
+    marginBottom: "40px"
   };
 
   const headerStyle = {
@@ -55,7 +56,7 @@ function MyMessages() {
       <Box sx={listFrame}>
         {data.length > 0 ? (
           data.map((message) => (
-            <MyCard key={message.id} message={message.text} />
+            <MyCard key={message.id} message={message.text} id={message.msg_id} />
           ))
         ) : (
           <p>No messages found.</p>

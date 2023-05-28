@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-
+const bcrypt = require('bcryptjs');
 // Update user profile
 router.patch("/updateprofile", async (req, res) => {
   const token = req.cookies.user;
@@ -37,7 +37,7 @@ router.patch("/updateprofile", async (req, res) => {
   console.log("Salt #1: ", salt1);
   const hash1 = await bcrypt.hash(password, salt1);
   console.log("Hash #1: ", hash1);
-  
+
   const sqlUpdate = "UPDATE users SET email = ?, name = ?, hashed_password = ? WHERE id = ?";
   connection.query(sqlUpdate, [email, name, hash1, userId], (err, results) => {
     if (err) {

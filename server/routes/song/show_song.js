@@ -2,8 +2,8 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const router = express.Router();
 
-router.get("/showsong", (req, res) => {
-  const groupBy = req.body.groupby;
+router.post("/showsong", (req, res) => {
+  const groupBy = req.body.groupBy;
   let groupSql = "";
 
   if (groupBy === "blue") {
@@ -20,7 +20,7 @@ router.get("/showsong", (req, res) => {
         error: err.message,
       });
     }
-    
+
 
     // Shuffle the songs using Fisher-Yates algorithm
     shuffleArray(results);
